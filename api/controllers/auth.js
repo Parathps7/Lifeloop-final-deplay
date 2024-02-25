@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 export const register = (req, res) => {
   //CHECK USER IF EXISTS
   console.log("Inside register");
+  console.log(req.data);
   // We write ? instead of req.body.username because it provides more security
   const q = "SELECT * FROM users WHERE username = ?";
 
