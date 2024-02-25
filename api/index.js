@@ -62,10 +62,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Replace this with the origin of your client application
-  credentials: true
-}));
+app.use(cors());
 
 // TO send as JSON
 app.use(express.json());
