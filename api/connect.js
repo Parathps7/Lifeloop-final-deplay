@@ -1,9 +1,9 @@
 import mysql from "mysql"
 
 export const db = mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"mynameisdhanish",
-  database:"social",
+  database: process.env.MYSQLDATABASE,
+  user:process.env.MYSQLUSER,
+  password:process.env.MYSQLPASSWORD,
+  host:process.env.MYSQLHOST,
   secureAuth: true
 })
