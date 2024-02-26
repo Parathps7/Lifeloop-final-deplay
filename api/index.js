@@ -12,6 +12,11 @@ import multer from "multer";
 import cookieParser from "cookie-parser";
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+app.use(cors());
+
+// TO send as JSON
+app.use(express.json());
+
 
 import fs from 'fs';
 import  {Octokit} from '@octokit/rest';
@@ -71,12 +76,6 @@ async function uploadImage(imageName) {
 //   res.setHeader('Access-Control-Allow-Credentials', 'true');
 //   next();
 // });
-
-
-app.use(cors());
-
-// TO send as JSON
-app.use(express.json());
 
 
 app.use(cookieParser());
