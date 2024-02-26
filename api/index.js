@@ -1,5 +1,4 @@
 import express from "express";
-const app = express();
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
@@ -13,12 +12,10 @@ import cookieParser from "cookie-parser";
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// TO send as JSON
-app.use(express.json());
-
-
 import fs from 'fs';
 import  {Octokit} from '@octokit/rest';
+
+const app = express();
 
 // Create an Octokit instance with your personal access token
 const octokit = new Octokit({ auth: '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' });
@@ -29,6 +26,10 @@ const repo = 'Images_by_users';
 
 // Define the path to the folder where you want to upload images
 const path = '';
+
+// app.use(cors());
+
+
 
 
 async function uploadImage(imageName) {
@@ -44,7 +45,7 @@ async function uploadImage(imageName) {
       content: content,
       encoding: 'base64'
     });
-
+    
     console.log('File uploaded successfully:', response.data);
     // The response data contains information about the uploaded file
   } catch (error) {
@@ -58,57 +59,33 @@ async function uploadImage(imageName) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+//CORS
 // app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app');
-//   res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   next();
-// });
+  //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  //   res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
+  //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  //   next();
+  // });
+  
+  
+  
+  // // TO send as JSON
+  // app.use(express.json(lim));
 
-// app.use(cors());
-
-// app.use((req, res, next) => {
-//   // Allow all origins
-//   res.setHeader('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay.vercel.app');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   next();
-// });
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://lifeloop-final-deplay.vercel.app");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  next();
-});
-
-
-const allowedOrigins = ['https://lifeloop-final-deplay.vercel.app'];
-app.use(cors({
-  origin: function (origin, callback) {
-    // Check if the origin is allowed or if it's a CORS preflight request
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
-
-app.options('*', cors()); // Enable CORS pre-flight
-
-
-app.use(cookieParser());
-
-
-
-
-
-const storage = multer.diskStorage({
+  app.use(cors({
+    origin: 'https://lifeloop-final-deplay.vercel.app', // Replace this with the origin of your client application
+    credentials: true
+  }));
+  app.use(express.json({ limit: '8mb' }));
+  
+  
+  app.use(cookieParser());
+  
+  
+  
+  
+  
+  const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "../client/public/upload");
   },
@@ -136,6 +113,7 @@ app.use("/api/comments", commentRoutes);
 app.use("/api/likes", likeRoutes);
 app.use("/api/relationships", relationshipRoutes);
 
-app.listen(process.env.PORT || 8800, () => {
+app.listen( 8800, () => {
   console.log("API working!");
 });
+
