@@ -1,3 +1,6 @@
 Link: 
 Backend: https://lifeloop-final-deplay.onrender.com
 Frontend: https://lifeloop-final-deplay.vercel.app/
+
+To fix:
+CORS error on profile page.
