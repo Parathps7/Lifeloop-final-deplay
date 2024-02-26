@@ -77,6 +77,14 @@ async function uploadImage(imageName) {
 //   next();
 // });
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://lifeloop-final-deplay.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 const allowedOrigins = ['https://lifeloop-final-deplay.vercel.app'];
 app.use(cors({
