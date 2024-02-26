@@ -6,5 +6,5 @@ export const db = mysql.createConnection({
   password:process.env.MYSQLPASSWORD,
   host:process.env.MYSQLHOST,
   port:process.env.MYSQLPORT
-  secureAuth: true
+  // secureAuth: true
 })
