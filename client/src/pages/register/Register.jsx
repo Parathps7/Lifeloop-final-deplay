@@ -20,7 +20,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("https://lifeloop-final-deplay.onrender.com", inputs);
+      await axios.post("https://lifeloop-final-deplay.onrender.com/api/auth/register", inputs);
       console.log("hesadallow w");
     } catch (err) {
       setErr(err.response.data);
