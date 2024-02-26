@@ -60,12 +60,12 @@ async function uploadImage(imageName) {
 
 
 //CORS
-// app.use((req, res, next) => {
-//  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-//  res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
-//  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//  next();
-// });
+app.use((req, res, next) => {
+ res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app/');
+ res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
+ res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+ next();
+});
 
 // app.use((req, res, next) => {
 //   // Allow all origins
