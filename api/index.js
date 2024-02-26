@@ -59,23 +59,39 @@ async function uploadImage(imageName) {
 
 
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app');
-  res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app');
+//   res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   next();
+// });
 
-app.use(cors());
+// app.use(cors());
 
-app.use((req, res, next) => {
-  // Allow all origins
-  res.setHeader('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+// app.use((req, res, next) => {
+//   // Allow all origins
+//   res.setHeader('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay.vercel.app');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
+
+
+const allowedOrigins = ['https://lifeloop-final-deplay.vercel.app'];
+app.use(cors({
+  origin: function (origin, callback) {
+    // Check if the origin is allowed or if it's a CORS preflight request
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+app.options('*', cors()); // Enable CORS pre-flight
 
 
 app.use(cookieParser());
