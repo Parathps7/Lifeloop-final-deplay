@@ -17,7 +17,7 @@ import fs from 'fs';
 import  {Octokit} from '@octokit/rest';
 
 // Create an Octokit instance with your personal access token
-const octokit = new Octokit({ auth: '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' });
+const octokit = new Octokit({ auth: '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' });
 
 // Define the repository owner and name
 const owner = 'Parathps7';
