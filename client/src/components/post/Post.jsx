@@ -83,7 +83,7 @@ const Post = ({ post }) => {
           )}
         </div>
         <div className="content">
-          <p>{post.descr}</p>
+          <p>{post.desc}</p>
           <img src={"https://raw.githubusercontent.com/Parathps7/Images_by_users/main/" + post.img} alt="" />
           {/* <img src={ __dirname + "../../../Pictures/" + post.img } alt="" /> */}
         </div>
