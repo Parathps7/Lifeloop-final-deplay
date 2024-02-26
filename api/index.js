@@ -12,7 +12,6 @@ import multer from "multer";
 import cookieParser from "cookie-parser";
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.use(cors());
 
 // TO send as JSON
 app.use(express.json());
@@ -61,21 +60,22 @@ async function uploadImage(imageName) {
 
 //CORS
 app.use((req, res, next) => {
- res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app/');
+ res.header('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay-4ohgwbmi2-parathps7s-projects.vercel.app');
  res.header('Access-Control-Allow-Credentials', true); // Set to true to allow credentials
  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
  next();
 });
 
-// app.use((req, res, next) => {
-//   // Allow all origins
-//   res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
+app.use(cors());
 
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-//   next();
-// });
+app.use((req, res, next) => {
+  // Allow all origins
+  res.setHeader('Access-Control-Allow-Origin', 'https://lifeloop-final-deplay.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 
 app.use(cookieParser());
