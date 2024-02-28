@@ -18,7 +18,7 @@ import  {Octokit} from '@octokit/rest';
 const app = express();
 
 // Create an Octokit instance with your personal access token
-const octokit = new Octokit({ auth: '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' });
+const octokit = new Octokit({ auth: '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' });
 
 // Define the repository owner and name
 const owner = 'Parathps7';
