@@ -27,7 +27,7 @@ const repo = 'Images_by_users';
 // Define the path to the folder where you want to upload images
 const path = '';
 
-// app.use(cors());
+app.use(cors());
 
 
 
